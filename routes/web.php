@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\monkey;
+
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROUTE TESTOWA
 Route::get('/', function () {
-    return view('welcome');
+    return view('test.welcome');
 });
 
-Route::get('/ks', function () {
-    return view('test');
-});
+Route::get('test/',[TestController::class,'test_function']);
 
-Route::get('/monkey', [monkey::class, 'showMonkey']);
+//ROUTES DOSTAWCY
+Route::get('suppliers/',[SupplierController::class,'index']);
+
