@@ -16,6 +16,7 @@ class SupplierController extends Controller
 
         $suppliers = ModelsSupplier::all();
         return view('suppliers.index',['suppliers'=>$suppliers]);
+        
     }
 
       /**
