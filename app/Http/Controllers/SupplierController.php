@@ -6,6 +6,7 @@ use App\Models\Supplier as ModelsSupplier;
 use Database\Seeders\SupplierSeeder;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Validation\Rule;
 
 
 class SupplierController extends Controller
@@ -40,7 +41,6 @@ class SupplierController extends Controller
         $supplier->save();
 
         return redirect('suppliers');
-        
     }
 
     /**
@@ -58,7 +58,9 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $suppliers=ModelsSupplier::all();
+        $supplier = $suppliers->find($id);
+        return view ('suppliers.edit',['supplier'=>$supplier]);
     }
 
     /**
@@ -66,7 +68,20 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+
+        $data = $request->all();
+        $supplier = ModelsSupplier::find($id);
+       
+        $validatedData = $request->validate([
+            'name' =>'required', 
+            Rule::unique('suppliers')->ignore($supplier->id,$id)]);
+
+        $supplier->fill($data);
+        $supplier->update();
+
+    
+        return redirect('suppliers');
     }
 
     /**
