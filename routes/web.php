@@ -17,12 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ROUTE TESTOWA
-Route::get('/', function () {
-    return view('test.welcome');
+Route::get('/abc', function () {
+    return view('templates.welcome');
 });
 
 Route::get('test/',[TestController::class,'test_function']);
 
 //ROUTES DOSTAWCY
+
 Route::get('suppliers/',[SupplierController::class,'index']);
+Route::get('suppliers/create',[SupplierController::class,'create'])->name('suppliers.create');
+Route::post('suppliers',[SupplierController::class,'store'])->name('suppliers.store');
+Route::get('suppliers/{id}',[SupplierController::class,'show'])->name('suppliers.show');
+Route::get('suppliers/{id}/edit',[SupplierController::class,'edit'])->name('suppliers.edit');
+Route::get('suppliers/{id}/delete',[SupplierController::class,'destroy'])->name('suppliers.destroy');
+
 

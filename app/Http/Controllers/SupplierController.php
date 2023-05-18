@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier as ModelsSupplier;
+use Database\Seeders\SupplierSeeder;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
@@ -24,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+       return view('suppliers.create');
     }
 
     /**
@@ -32,7 +33,14 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new ModelsSupplier();
+        $supplier->name = $request->name;
+        $supplier->address = $request->address;
+        $supplier->email = $request->email;
+        $supplier->save();
+
+        return redirect('suppliers');
+        
     }
 
     /**
@@ -40,7 +48,9 @@ class SupplierController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $suppliers=ModelsSupplier::all();
+        $supplier = $suppliers->find($id);
+        return view ('suppliers.show',['supplier'=>$supplier]);
     }
 
     /**
@@ -64,6 +74,9 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $suppliers=ModelsSupplier::all();
+        $supplier = $suppliers->find($id);
+        $supplier->delete();
+        return redirect('suppliers');
     }
 }
