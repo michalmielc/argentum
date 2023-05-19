@@ -18,7 +18,6 @@ class SupplierController extends Controller
 
         $suppliers = ModelsSupplier::all();
         return view('suppliers.index',['suppliers'=>$suppliers]);
-        
     }
 
       /**
@@ -34,6 +33,10 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|unique:suppliers'
+        ]);
+
         $supplier = new ModelsSupplier();
         $supplier->name = $request->name;
         $supplier->address = $request->address;
@@ -68,19 +71,15 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        $supplier = ModelsSupplier::find($id);
+        $request->validate([
+            'name'=>'required|unique:suppliers,name,'.$id
+        ]);
 
         $data = $request->all();
-        $supplier = ModelsSupplier::find($id);
-       
-        $validatedData = $request->validate([
-            'name' =>'required', 
-            Rule::unique('suppliers')->ignore($supplier->id,$id)]);
-
         $supplier->fill($data);
         $supplier->update();
 
-    
         return redirect('suppliers');
     }
 

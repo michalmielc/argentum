@@ -6,6 +6,15 @@
 @section('content')
 
     <h4>CREATE SUPPLIER</h4>
+    <div>
+      <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
+    </div>
+
+    @if($errors->any())
+      @foreach($errors->all() as $error)
+      <div>{{ $error }}</div>
+      @endforeach
+    @endif
 
     <form action="{{ route ('suppliers.store') }}" method="POST">
       {{ csrf_field() }}

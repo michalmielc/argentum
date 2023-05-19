@@ -6,6 +6,10 @@
 @section('content')
 
     <h4>SUPPLIER</h4>
+    <div>
+      <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
+    </div>
+
         <table>
             <tr>
               <td>NAME:</td>
