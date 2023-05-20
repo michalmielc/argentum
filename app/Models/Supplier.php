@@ -13,7 +13,10 @@ class Supplier extends Model
     protected $fillable = [
         'name',
         'address',
-        'email',
-      
+        'postalcode',
+        'city'.
+        'region',
+        'country',
+        'email'
     ];
 }
