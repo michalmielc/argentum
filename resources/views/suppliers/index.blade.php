@@ -43,7 +43,7 @@
               <td>{{ $supplier->email }}</td>
               <td><a href= {{route ('suppliers.show',[$supplier->id]) }}>S</a></td>
               <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}>E</a></td>
-              <td><a href= {{route ('suppliers.destroy',[$supplier->id,'destroy']) }}>D</a></td>
+              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}>D</a></td>
             </tr>
             @endforeach
         </table>

@@ -7,7 +7,9 @@
 
     <h4>EDIT  SUPPLIER</h4>
     <div>
+      <br>
       <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
+      <br>
     </div>
 
     @if($errors->any())

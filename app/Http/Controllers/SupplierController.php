@@ -83,6 +83,13 @@ class SupplierController extends Controller
         return redirect('suppliers');
     }
 
+    public function delete(string $id)
+    {
+        $suppliers=ModelsSupplier::all();
+        $supplier = $suppliers->find($id);
+        return view ('suppliers.delete',['supplier'=>$supplier]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

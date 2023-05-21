@@ -27,29 +27,12 @@ class SupplierSeeder extends Seeder
         //     'address' => "4740 Center Street Rochelle Park, New Jersey",
         //     'email' => "rep_ser@gmail.com"
         // ],
-        // [
-        //     'name' => "ASML Holding",
-        //     'address' => "1823 Alpaca Way, Tustin, California",
-        //     'email' => "rep_ser@gmail.com"
-        // ],
-        
-        // [
-        //     'name' => "Meb Management Services",
-        //     'address' => "1500 Twin House Lane Mount Vernon, Missouri",
-        //     'email' => "ord@mms-web-usa.com"
-        // ],
-        
-        // [
-        //     'name' => "Discount Tire",
+       
         //     'address' => "1820 Mapleview Drive Moon Lake, Florida",
         //     'email' => "info@dicounttire.com"
         // ],
         
-        // [
-        //     'name' => "Microchip Technology",
-        //     'address' => "2512 May Street Lexington, Kentucky",
-        //     'email' => "micro@m-t.com"
-        // ]
+       
         // ]);
     }
 
