@@ -24,15 +24,13 @@ Route::get('/abc', function () {
 Route::get('test/',[TestController::class,'test_function']);
 
 //ROUTES DOSTAWCY
-
 Route::get('suppliers/',[SupplierController::class,'index'])->name('suppliers.index');
+Route::get('suppliers/search',[SupplierController::class,'search'])->name('suppliers.search');
 Route::get('suppliers/create',[SupplierController::class,'create'])->name('suppliers.create');
 Route::post('suppliers',[SupplierController::class,'store'])->name('suppliers.store');
 Route::get('suppliers/{id}',[SupplierController::class,'show'])->name('suppliers.show');
 Route::get('suppliers/{id}/edit',[SupplierController::class,'edit'])->name('suppliers.edit');
 Route::post('suppliers/{id}/update',[SupplierController::class,'update'])->name('suppliers.update');
-//Route::get('suppliers/{id}/delete',[SupplierController::class,'destroy'])->name('suppliers.destroy');
-
 Route::get('suppliers/{id}/delete',[SupplierController::class,'delete'])->name('suppliers.delete');
 Route::post('suppliers/{id}/destroy',[SupplierController::class,'destroy'])->name('suppliers.destroy');
 

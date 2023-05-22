@@ -7,9 +7,7 @@
 
     <h4>SUPPLIER</h4>
     <div>
-      <br>
-      <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
-      <br>
+         <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
     </div>
 
         <table>
