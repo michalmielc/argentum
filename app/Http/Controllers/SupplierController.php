@@ -11,6 +11,24 @@ use Illuminate\Validation\Rule;
 
 class SupplierController extends Controller
 {
+    // TEST RULE FUNCTION
+
+    protected function SupplierRule($id=null) {
+
+        return [
+            'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+        ],
+            'address'=>  'required|string|max:100',
+            'postalcode'=>  'required|string|max:15',
+            'city'=>  'required|string|max:50',
+            'region'=>  'string|max:50',
+            'country'=>  'required|string|max:40',
+            'email'=>  'required|email'
+        ];
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -45,12 +63,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required|unique:suppliers'
-        ]);
+        // $request->validate([
+        //     'name'=>'required|unique:suppliers'
+        // ]);
+
+        $request->validate($this->SupplierRule());
 
         $supplier = new ModelsSupplier();
-
         $supplier->name = $request->name;
         $supplier->address = $request->address;
         $supplier->postalcode = $request->postalcode;
@@ -58,9 +77,6 @@ class SupplierController extends Controller
         $supplier->region = $request->region;
         $supplier->country = $request->country;
         $supplier->email = $request->email;
-
-
-
         $supplier->save();
 
         return redirect('suppliers');
@@ -92,9 +108,11 @@ class SupplierController extends Controller
     public function update(Request $request, string $id)
     {
         $supplier = ModelsSupplier::find($id);
-        $request->validate([
-            'name'=>'required|unique:suppliers,name,'.$id
-        ]);
+        // $request->validate([
+        //     'name'=>'required|unique:suppliers,name,'.$id
+        // ]);
+
+        $request->validate($this->SupplierRule($id));
 
         $data = $request->all();
         $supplier->fill($data);
