@@ -28,17 +28,17 @@
       <label for="address">ADDRESS:</label>
       <input type="text" id="address" name="address" value="{{$supplier->address}}"><br>
 
-      <label for="address">POSTAL CODE:</label>
-      <input type="text" id="address" name="address" value="{{$supplier->postalcode}}"><br>
+      <label for="postalcode">POSTAL CODE:</label>
+      <input type="text" id="postalcode" name="postalcode" value="{{$supplier->postalcode}}"><br>
 
-      <label for="address">CITY:</label>
-      <input type="text" id="address" name="address" value="{{$supplier->city}}"><br>
+      <label for="city">CITY:</label>
+      <input type="text" id="city" name="city" value="{{$supplier->city}}"><br>
 
-      <label for="address">REGION:</label>
-      <input type="text" id="address" name="address" value="{{$supplier->region}}"><br>
+      <label for="region">REGION:</label>
+      <input type="text" id="region" name="region" value="{{$supplier->region}}"><br>
 
-      <label for="address">COUNTRY:</label>
-      <input type="text" id="address" name="address" value="{{$supplier->country}}"><br>
+      <label for="country">COUNTRY:</label>
+      <input type="text" id="country" name="country" value="{{$supplier->country}}"><br>
 
       <label for="email">EMAIL:</label>
       <input type="text" id="email" name="email" value="{{$supplier->email}}"><br>

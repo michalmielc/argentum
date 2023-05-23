@@ -50,9 +50,17 @@ class SupplierController extends Controller
         ]);
 
         $supplier = new ModelsSupplier();
+
         $supplier->name = $request->name;
         $supplier->address = $request->address;
+        $supplier->postalcode = $request->postalcode;
+        $supplier->city= $request->city;
+        $supplier->region = $request->region;
+        $supplier->country = $request->country;
         $supplier->email = $request->email;
+
+
+
         $supplier->save();
 
         return redirect('suppliers');
