@@ -3,77 +3,63 @@
     ARGENTUM  - SUPPLIERS
 @endsection
 
-<style> 
-
-  svg  {
-
-    max-width:14px !important;
-    max-height: 14px !important;
-   }
-
-  </style>
-
 @section('content')
 
+    {{-- nagłówek --}}
     <h4>SUPPLIERS</h4>
 
+    {{-- stwórz nowego --}}
+
+    <a href="{{ route ('suppliers.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
+
+    {{-- pole search --}}
+    <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
+        <div class="col-auto">
+          <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+          <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+        </div>
+        <div class="col-auto">
+          <label for="searchField" class="visually-hidden">Password</label>
+          <input type="search" class="form-control" id="searchField"name="searchField" >
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+        </div>
+     </form>
+
+    {{-- lista dostawców --}}
+
     <div>
-      <a href="{{ route ('suppliers.create')}}">DODAJ NOWEGO</a>
-      <div>
-        <br>
-      </div>
+        liczba rekordów na stronie: {{$suppliers->count()}}
     </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">CITY</th>
+            <th scope="col">COUNTRY</th>
+            <th scope="col">EMAIL</th>
+          </tr>
+        </thead>
+        <tbody>
 
-
-    <div>
-      <!-- Search input -->
-      <form action="{{route ('suppliers.search')}}" method="GET">
-        {{-- {{ csrf_field() }}
-
-        <input type="hidden" name ="_token" value="{{ csrf_token() }}" >
-        <input type="hidden" name="id " value= {{ request('searchField')}}> --}}
-
-        <label for="searchField">SZUKAJ WG NAZWY:</label>
-        <input type="search" id="searchField" name="searchField">
-        <input type="submit">
-      </form>
-      
-  </div>
-    <div>
-        <table>
-            <tr>
-              <th>NAME</th>
-              <th>ADDRESS</th>
-              <th>POSTAL CODE</th>
-              <th>CITY</th>
-              <th>REGION</th>
-              <th>COUNTRY</th>
-              <th>EMAIL</th>
-            </tr>
-    
             @foreach ($suppliers as $supplier)
-            <tr>
-              <td>{{ $supplier->name }}</td>
-              <td>{{ $supplier->address }}</td>
-              <td>{{ $supplier->postalcode }}</td>
+            <tr scorp="row">
+              <td >{{ $supplier->name }}</td>
               <td>{{ $supplier->city }}</td>
-              <td>{{ $supplier->region }}</td>
               <td>{{ $supplier->country }}</td>
               <td>{{ $supplier->email }}</td>
-              <td><a href= {{route ('suppliers.show',[$supplier->id]) }}>S</a></td>
-              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}>E</a></td>
-              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}>D</a></td>
+              <td><a href= {{route ('suppliers.show',[$supplier->id]) }}><i class="fa-sharp fa-solid fa-magnifying-glass"></i>S</a></td>
+              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i class="fa-light fa-pencil-mechanical"></i>E</a></td>
+              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}><i class="fa-duotone fa-trash"></i>D</a></td>
             </tr>
             @endforeach
-        </table>
-        
-        <div>
-          <br>  
-        </div>
 
-          <div class="pagination" >
+        </tbody>
+     </table>
+
+         <div class="pagination" >
             {{ $suppliers->links()}}
           </div>
-      </div>
 
 @endsection

@@ -34,7 +34,7 @@ class SupplierController extends Controller
      */
     public function index (){
 
-        return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
+        return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(10)]);
     }
 
     /**
@@ -45,7 +45,7 @@ class SupplierController extends Controller
     $searchQuery = $request->input('searchField');
     //dd( $searchQuery);
      $suppliers = ModelsSupplier::where('name', 'LIKE', "%{$searchQuery}%")
-                ->paginate(15);
+                ->paginate(10);
         // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
         return view('suppliers.index',['suppliers'=>$suppliers]);
     }
