@@ -8,7 +8,7 @@
     <h4>CREATE SUPPLIER</h4>
 
     <div>
-      <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
+        <a href="{{ route ('suppliers.index')}}" class="btn btn-info">POWRÓT</a>
     </div>
 
     @if($errors->any())
@@ -17,35 +17,49 @@
       @endforeach
     @endif
 
-    <form action="{{ route ('suppliers.store') }}" method="POST">
-      {{ csrf_field() }}
+    <div>
+        <form action="{{ route ('suppliers.store') }}" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name ="_token" value="{{ csrf_token() }}" >
 
-      <input type="hidden" name ="_token" value="{{ csrf_token() }}" >
+            <div class="row">
+                <div class="col-5">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="address">
+                </div>
+            </div>
 
-      <label for="name">NAME:</label>
-      <input type="text" id="name" name="name"><br>
-      
-      <label for="address">ADDRESS:</label>
-      <input type="text" id="address" name="address"><br>
-     
-      <label for="postalcode">POSTAL CODE:</label>
-      <input type="text" id="postalcode" name="postalcode"><br>
-     
-      <label for="city">CITY:</label>
-      <input type="text" id="city" name="city"><br>
-   
-      <label for="region">REGION:</label>
-      <input type="text" id="region" name="region"><br>
-     
-      <label for="country">COUNTRY:</label>
-      <input type="text" id="country" name="country"><br>
+            <div class="row">
+                <div class="col-2">
+                    <input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="ZIP">
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="city">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="region" name="region" placeholder="region">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="country" name="country" placeholder="country">
+                </div>
+            </div>
 
-      <label for="email">EMAIL:</label>
-      <input type="text" id="email" name="email"><br>
+            <div class="row">
+                <div class="col-4">
+                    <input type="email-3" class="form-control" id="email" name="email" placeholder="email">
+                </div>
+            </div>
 
-      <input type = "submit" value="ZAPISZ">
+            <button type="submit" class="btn btn-primary mb-2">UTWÓRZ</button>
 
-    </form>
-        
-        
+        </form>
+    </div>
+
+
 @endsection

@@ -7,7 +7,8 @@
 
     <h4>EDIT  SUPPLIER</h4>
     <div>
-      <a href="{{ route ('suppliers.index')}}">POWRÓT</a>
+        <a href="{{ route ('suppliers.index')}}" class="btn btn-info">POWRÓT</a>
+        <a href="{{ route ('suppliers.index')}}" class="btn btn-danger">USUŃ</a>
     </div>
 
     @if($errors->any())
@@ -24,7 +25,7 @@
 
       <label for="name">NAME:</label>
       <input type="text" id="name" name="name" value=" {{$supplier->name}}" ><br>
-      
+
       <label for="address">ADDRESS:</label>
       <input type="text" id="address" name="address" value="{{$supplier->address}}"><br>
 
@@ -46,6 +47,6 @@
       <input type = "submit" value="ZAPISZ">
 
     </form>
-        
-        
+
+
 @endsection

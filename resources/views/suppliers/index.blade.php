@@ -31,6 +31,8 @@
 
     <div>
         liczba rekordów na stronie: {{$suppliers->count()}}
+        liczba wszystkich rekordów: {{$suppliers->total()}}
+
     </div>
     <table class="table">
         <thead>
@@ -49,9 +51,9 @@
               <td>{{ $supplier->city }}</td>
               <td>{{ $supplier->country }}</td>
               <td>{{ $supplier->email }}</td>
-              <td><a href= {{route ('suppliers.show',[$supplier->id]) }}><i class="fa-sharp fa-solid fa-magnifying-glass"></i>S</a></td>
-              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i class="fa-light fa-pencil-mechanical"></i>E</a></td>
-              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}><i class="fa-duotone fa-trash"></i>D</a></td>
+              <td><a href= {{route ('suppliers.show',[$supplier->id]) }}><i class="fas fa-search" ></i></a></td>
+              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
+              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
             </tr>
             @endforeach
 

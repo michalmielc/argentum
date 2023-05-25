@@ -27,12 +27,12 @@ class SupplierSeeder extends Seeder
         //     'address' => "4740 Center Street Rochelle Park, New Jersey",
         //     'email' => "rep_ser@gmail.com"
         // ],
-       
+
         //     'address' => "1820 Mapleview Drive Moon Lake, Florida",
         //     'email' => "info@dicounttire.com"
         // ],
-        
-       
+
+
         // ]);
     }
 
