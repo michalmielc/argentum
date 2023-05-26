@@ -5,36 +5,44 @@
 
 @section('content')
 
+<div class="row gy-3">
     {{-- nagłówek --}}
-    <h4>SUPPLIERS</h4>
+    <div>
+        <h4>SUPPLIERS</h4>
+    </div>
 
-    {{-- stwórz nowego --}}
 
-    <a href="{{ route ('suppliers.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
-
-    {{-- pole search --}}
-    <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
-        <div class="col-auto">
-          <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-          <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
-        </div>
-        <div class="col-auto">
-          <label for="searchField" class="visually-hidden">Password</label>
-          <input type="search" class="form-control" id="searchField"name="searchField" >
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
-        </div>
-     </form>
-
-    {{-- lista dostawców --}}
+    {{-- przycisk stwórz nowego --}}
+    <div>
+        <a href="{{ route ('suppliers.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
+    </div>
 
     <div>
-        liczba rekordów na stronie: {{$suppliers->count()}}
-        liczba wszystkich rekordów: {{$suppliers->total()}}
-
+        {{-- pole search --}}
+        <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
+            <div class="col-auto">
+            <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+            <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+            </div>
+            <div class="col-auto">
+            <label for="searchField" class="visually-hidden">Password</label>
+            <input type="search" class="form-control" id="searchField"name="searchField" >
+            </div>
+            <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+            </div>
+        </form>
     </div>
-    <table class="table">
+
+
+    {{-- lista dostawców --}}
+    <div>
+        <div>
+            liczba rekordów na stronie: {{$suppliers->count()}}
+            liczba wszystkich rekordów: {{$suppliers->total()}}
+
+        </div>
+        <table class="table">
         <thead>
           <tr>
             <th scope="col">NAME</th>
@@ -64,4 +72,6 @@
             {{ $suppliers->links()}}
           </div>
 
-@endsection
+    </div>
+</div>
+    @endsection

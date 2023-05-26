@@ -1,4 +1,16 @@
-/* 
+
 body {
     background-color: yellow;
-} */
+}
+
+
+.validations  {
+    color: red !important;
+
+}
+
+.test {
+    color: green !important;
+    font-size: 22px !important;
+    background-color: yellow !important;
+}
