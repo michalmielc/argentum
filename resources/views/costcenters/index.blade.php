@@ -1,6 +1,6 @@
 @extends('templates.template')
 @section('title_main')
-    ARGENTUM  - SUPPLIERS
+    ARGENTUM  - COSTCENTERS
 @endsection
 
 @section('content')
@@ -8,18 +8,18 @@
 <div class="row gy-3">
     {{-- nagłówek --}}
     <div>
-        <h4>SUPPLIERS</h4>
+        <h4>COSTCENTERS</h4>
     </div>
 
 
     {{-- przycisk stwórz nowego --}}
     <div>
-        <a href="{{ route ('suppliers.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
+        <a href="{{ route ('costcenters.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
     </div>
 
     <div>
         {{-- pole search --}}
-        <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
+        <form class="row g-3" action="{{route ('costcenters.search')}}" method="GET">
             <div class="col-auto">
             <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
             <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
@@ -38,29 +38,25 @@
     {{-- lista dostawców --}}
     <div>
         <div>
-            liczba rekordów na stronie: {{$suppliers->count()}}
-            z  {{$suppliers->total()}}
+            liczba rekordów na stronie: {{$costcenters->count()}}
+            z  {{$costcenters->total()}}
         </div>
         <table class="table">
         <thead>
           <tr>
             <th scope="col">NAME</th>
-            <th scope="col">CITY</th>
-            <th scope="col">COUNTRY</th>
-            <th scope="col">EMAIL</th>
+            <th scope="col">CODE</th>
           </tr>
         </thead>
         <tbody>
 
-            @foreach ($suppliers as $supplier)
+            @foreach ($costcenters as $costcenter)
             <tr scorp="row">
-              <td >{{ $supplier->name }}</td>
-              <td>{{ $supplier->city }}</td>
-              <td>{{ $supplier->country }}</td>
-              <td>{{ $supplier->email }}</td>
-              <td><a href= {{route ('suppliers.show',[$supplier->id]) }}><i class="fas fa-search" ></i></a></td>
-              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
-              <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
+              <td >{{ $costcenter->name }}</td>
+              <td>{{ $costcenter->code }}</td>
+              <td><a href= {{route ('costcenters.show',[$costcenter->id]) }}><i class="fas fa-search" ></i></a></td>
+              <td><a href= {{route ('costcenters.edit',[$costcenter->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
+              <td><a href= {{route ('costcenters.delete',[$costcenter->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
             </tr>
             @endforeach
 
@@ -68,7 +64,7 @@
      </table>
 
          <div class="pagination" >
-            {{ $suppliers->links()}}
+            {{ $costcenters->links()}}
           </div>
 
     </div>

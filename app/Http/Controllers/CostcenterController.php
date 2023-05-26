@@ -2,25 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Costcenter;
+use App\Models\Costcenter as ModelsCostcenter;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CostcenterController extends Controller
 {
+   // TEST RULE FUNCTION
+
+   protected function CostcenterRule($id=null) {
+
+    return [
+        'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+    ],
+        'code'=>  'required|string|max:30'
+    ];
+}
+
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        return view('costcenters.index',['costcenters'=>ModelsCostcenter::paginate(10)]);
     }
+
+
+    /**
+     * Display a query's result .
+     */
+    public function search (Request $request){
+
+        $searchQuery = $request->input('searchField');
+        //dd( $searchQuery);
+         $costcenters = ModelsCostcenter::where('name', 'LIKE', "%{$searchQuery}%")
+                    ->paginate(10);
+            // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
+            return view('costcenters.index',['costcenters'=>$costcenters]);
+        }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('costcenters.create');
     }
 
     /**
@@ -28,38 +55,69 @@ class CostcenterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->CostcenterRule());
+
+        $costcenter = new ModelsCostcenter();
+        $costcenter->name = $request->name;
+        $costcenter->code = $request->code;
+
+        $costcenter->save();
+
+        return redirect('costcenters');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Costcenter $costcenter)
+    public function show(string $id)
     {
-        //
+        $costcenters=ModelsCostcenter::all();
+        $costcenter = $costcenters->find($id);
+        return view ('costcenters.show',['costcenter'=>$costcenter]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Costcenter $costcenter)
+    public function edit(string $id)
     {
-        //
+        $costcenters=ModelsCostcenter::all();
+        $costcenter = $costcenters->find($id);
+        return view ('costcenters.show',['costcenter'=>$costcenter]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Costcenter $costcenter)
+    public function update(Request $request, string $id)
     {
-        //
+        $costcenter = ModelsCostcenter::find($id);
+
+        $request->validate($this->CostcenterRule($id));
+
+        $data = $request->all();
+        $costcenter->fill($data);
+        $costcenter->update();
+
+        return redirect('costcenters');
     }
+
+    public function delete(string $id)
+    {
+        $costcenters=ModelsCostcenter::all();
+        $costcenter = $costcenters->find($id);
+        return view ('costcenters.delete',['costcenter'=>$costcenter]);
+    }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Costcenter $costcenter)
+    public function destroy(string $id)
     {
-        //
+        $costcenters=ModelsCostcenter::all();
+        $costcenter = $costcenters->find($id);
+        $costcenter->delete();
+        return redirect('costcenters');
     }
 }
