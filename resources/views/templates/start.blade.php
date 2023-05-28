@@ -4,8 +4,10 @@
 @endsection
 
 @section('content')
-
-
+{{-- // style css --}}
+<style>
+   body { background:url ('img/main_menu.jpg') !important; }
+</style>
 
     <div class="row gy-3">
         <div>

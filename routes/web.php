@@ -26,12 +26,13 @@ Route::get('/abc', function () {
 
 Route::get('test/test',[TestController::class,'test_function']);
 
-// ROUTE MAIN
+// ROUTE MAIN ------------------------------
 
 Route::get('/start', function () {
 
     return view('templates.start');
-});
+
+})->name('argentum.mainmenu');
 
 //ROUTES DOSTAWCY ------------------------------
 Route::get('suppliers/',[SupplierController::class,'index'])->name('suppliers.index');

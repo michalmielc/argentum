@@ -25,8 +25,8 @@
             <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
             </div>
             <div class="col-auto">
-            <label for="searchField" class="visually-hidden">Password</label>
-            <input type="search" class="form-control" id="searchField"name="searchField" >
+                <label for="searchFieldPassword" class="visually-hidden">Password</label>
+                <input type="search" class="form-control" id="searchFieldPassword"name="searchFieldPassword" >
             </div>
             <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">SEARCH</button>

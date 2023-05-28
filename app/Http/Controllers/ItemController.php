@@ -3,25 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item as ModelsItem;
 use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
         // TEST RULE FUNCTION
 
-        protected function SupplierRule($id=null) {
+        protected function ItemRule($id=null) {
 
             return [
-                'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+                'name1'=> ['required|string|max:100', Rule::unique('items')->ignore($id)
             ],
-                'address'=>  'required|string|max:100',
-                'postalcode'=>  'required|string|max:15',
-                'city'=>  'required|string|max:50',
-                'region'=>  'string|max:50',
-                'country'=>  'required|string|max:40',
-                'email'=>  'required|email'
+                'name2'=>  'string|max:100',
+                'name3'=>  'string|max:100',
+                'barcode'=>  'required|string|max:50',
+                // 'boxAmount'=> '',
+                'minInv'=>  'numeric|min:0',
+                // 'sizes'=>  '',
+                'weight'=>  'numeric|min:0',
+                'picture'=>  'string|max:100',
+                'isActive'=> 'required|boolean',
+                // 'expiryDate'=> '',
+                'isBlocked'=> 'required|boolean'
+
             ];
         }
+
+
 
 
 
@@ -30,7 +39,7 @@ class ItemController extends Controller
          */
         public function index (){
 
-            return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(10)]);
+            return view('items.index',['items'=>ModelsItem ::paginate(10)]);
         }
 
         /**
@@ -39,11 +48,12 @@ class ItemController extends Controller
         public function search (Request $request){
 
         $searchQuery = $request->input('searchField');
-        //dd( $searchQuery);
-         $suppliers = ModelsSupplier::where('name', 'LIKE', "%{$searchQuery}%")
+
+        // DO POPRAWY WYSZUKIWANIE
+         $items = ModelsItem::where('name', 'LIKE', "%{$searchQuery}%")
                     ->paginate(10);
-            // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
-            return view('suppliers.index',['suppliers'=>$suppliers]);
+
+            return view('items.index',['items'=>$items]);
         }
 
           /**
@@ -51,7 +61,7 @@ class ItemController extends Controller
          */
         public function create()
         {
-           return view('suppliers.create');
+           return view('items.create');
         }
 
         /**
@@ -59,23 +69,21 @@ class ItemController extends Controller
          */
         public function store(Request $request)
         {
-            // $request->validate([
-            //     'name'=>'required|unique:suppliers'
-            // ]);
 
-            $request->validate($this->SupplierRule());
+            $request->validate($this->ItemRule());
 
-            $supplier = new ModelsSupplier();
-            $supplier->name = $request->name;
-            $supplier->address = $request->address;
-            $supplier->postalcode = $request->postalcode;
-            $supplier->city= $request->city;
-            $supplier->region = $request->region;
-            $supplier->country = $request->country;
-            $supplier->email = $request->email;
-            $supplier->save();
+            //DO POPRAWY STORE
+            $item = new ModelsItem();
+            $item->name = $request->name;
+            $item->address = $request->address;
+            $item->postalcode = $request->postalcode;
+            $item->city= $request->city;
+            $item->region = $request->region;
+            $item->country = $request->country;
+            $item->email = $request->email;
+            $item->save();
 
-            return redirect('suppliers');
+            return redirect('items');
         }
 
         /**
@@ -83,9 +91,9 @@ class ItemController extends Controller
          */
         public function show(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.show',['supplier'=>$supplier]);
+            $items=ModelsItem::all();
+            $item = $items->find($id);
+            return view ('items.show',['item'=>$item]);
         }
 
         /**
@@ -93,9 +101,9 @@ class ItemController extends Controller
          */
         public function edit(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.edit',['supplier'=>$supplier]);
+            $items=ModelsItem::all();
+            $item = $items->find($id);
+            return view ('items.edit',['item'=>$item]);
         }
 
         /**
@@ -103,25 +111,22 @@ class ItemController extends Controller
          */
         public function update(Request $request, string $id)
         {
-            $supplier = ModelsSupplier::find($id);
-            // $request->validate([
-            //     'name'=>'required|unique:suppliers,name,'.$id
-            // ]);
+            $item = ModelsItem::find($id);
 
-            $request->validate($this->SupplierRule($id));
+            $request->validate($this->ItemRule($id));
 
             $data = $request->all();
-            $supplier->fill($data);
-            $supplier->update();
+            $item->fill($data);
+            $item->update();
 
-            return redirect('suppliers');
+            return redirect('items');
         }
 
         public function delete(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.delete',['supplier'=>$supplier]);
+            $items=ModelsItem::all();
+            $item = $items->find($id);
+            return view ('items.delete',['item'=>$item]);
         }
 
         /**
@@ -129,9 +134,9 @@ class ItemController extends Controller
          */
         public function destroy(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            $supplier->delete();
-            return redirect('suppliers');
+            $items=ModelsItem::all();
+            $item = $items->find($id);
+            $item->delete();
+            return redirect('items');
         }
 }

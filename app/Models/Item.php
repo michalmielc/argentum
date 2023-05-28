@@ -13,7 +13,18 @@ class Item extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'code'
+        'name1',
+        'name2',
+        'name3',
+        'barcode',
+        'boxAmount',
+        'minInv',
+        'sizes',
+        'weight',
+        'picture',
+        'isActive',
+        'expiryDate',
+        'isBlocked'
     ];
 }
+

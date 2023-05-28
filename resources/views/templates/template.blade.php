@@ -12,7 +12,15 @@
     <body >
         <div class="container">
             <div class="test">TEST</div>
+
+            <div class="row gy-3">
+                <div>
+                    <a href="{{ route ('argentum.mainmenu')}}" class="btn btn-info">MENU</a>
+                </div>
+            </div>
+
           @yield('content')
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
