@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\StorageplaceController;
 use App\Http\Controllers\CostcenterController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +54,25 @@ Route::get('costcenters/{id}/edit',[CostcenterController::class,'edit'])->name('
 Route::post('costcenters/{id}/update',[CostcenterController::class,'update'])->name('costcenters.update');
 Route::get('costcenters/{id}/delete',[CostcenterController::class,'delete'])->name('costcenters.delete');
 Route::post('costcenters/{id}/destroy',[CostcenterController::class,'destroy'])->name('costcenters.destroy');
+
+//ROUTES STORAGEPLACES ------------------------------
+Route::get('storagesplaces/',[StorageplaceController::class,'index'])->name('storagesplaces.index');
+Route::get('storagesplaces/search',[StorageplaceController::class,'search'])->name('storagesplaces.search');
+Route::get('storagesplaces/create',[StorageplaceController::class,'create'])->name('storagesplaces.create');
+Route::post('storagesplaces',[StorageplaceController::class,'store'])->name('storagesplaces.store');
+Route::get('storagesplaces/{id}',[StorageplaceController::class,'show'])->name('storagesplaces.show');
+Route::get('storagesplaces/{id}/edit',[StorageplaceController::class,'edit'])->name('storagesplaces.edit');
+Route::post('storagesplaces/{id}/update',[StorageplaceController::class,'update'])->name('storagesplaces.update');
+Route::get('storagesplaces/{id}/delete',[StorageplaceController::class,'delete'])->name('storagesplaces.delete');
+Route::post('storagesplaces/{id}/destroy',[StorageplaceController::class,'destroy'])->name('storagesplaces.destroy');
+
+//ROUTES ITEMS ------------------------------
+Route::get('items/',[ItemController::class,'index'])->name('items.index');
+Route::get('items/search',[ItemController::class,'search'])->name('items.search');
+Route::get('items/create',[ItemController::class,'create'])->name('items.create');
+Route::post('items',[ItemController::class,'store'])->name('items.store');
+Route::get('items/{id}',[ItemController::class,'show'])->name('items.show');
+Route::get('items/{id}/edit',[ItemController::class,'edit'])->name('items.edit');
+Route::post('items/{id}/update',[ItemController::class,'update'])->name('items.update');
+Route::get('items/{id}/delete',[ItemController::class,'delete'])->name('items.delete');
+Route::post('items/{id}/destroy',[ItemController::class,'destroy'])->name('items.destroy');

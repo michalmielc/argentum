@@ -21,15 +21,15 @@
         {{-- pole search --}}
         <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
             <div class="col-auto">
-            <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-            <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+                <label for="searchFieldName" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+                <input type="text" readonly class="form-control-plaintext" id="searchFieldName" value="SZUKAJ WG NAZWY:">
             </div>
             <div class="col-auto">
-            <label for="searchField" class="visually-hidden">Password</label>
-            <input type="search" class="form-control" id="searchField"name="searchField" >
+                <label for="searchFieldPassword" class="visually-hidden">Password</label>
+                <input type="search" class="form-control" id="searchFieldPassword"name="searchField" >
             </div>
             <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+
             </div>
         </form>
     </div>

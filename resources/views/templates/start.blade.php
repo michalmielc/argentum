@@ -5,5 +5,19 @@
 
 @section('content')
 
-    <h1>WELCOME TO ARGENTUM</h1>
+
+
+    <div class="row gy-3">
+        <div>
+            <h3>WELCOME TO ARGENTUM</h3>
+        </div>
+        <ul>
+           <li> <a href="{{ route ('costcenters.index')}}" class="btn btn-info">COSTCENTERS</a> </li>
+
+            {{-- <a href="{{ route ('items.index')}}" class="btn btn-info">ITEMS</a>
+            <a href="{{ route ('storageplaces.index')}}" class="btn btn-info">STORAGEPLACES</a> --}}
+            <li><a href="{{ route ('suppliers.index')}}" class="btn btn-info">SUPPLIERS</a> </li>
+        </ul>
+    </div>
+
 @endsection
