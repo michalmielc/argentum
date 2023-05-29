@@ -21,12 +21,12 @@
         {{-- pole search --}}
         <form class="row g-3" action="{{route ('suppliers.search')}}" method="GET">
             <div class="col-auto">
-                <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-                <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+                <label for="searchForText" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY:">
             </div>
             <div class="col-auto">
-                <label for="search" class="visually-hidden">Password</label>
-                <input type="search" class="form-control" id="search"name="search" >
+                <label for="searchValue" class="visually-hidden">SEARCHBOX</label>
+                <input type="search" class="form-control" id="searchValue"name="searchValue" >
             </div>
             <div class="col-auto">
                     <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
@@ -59,7 +59,7 @@
               <td>{{ $supplier->country }}</td>
               <td>{{ $supplier->email }}</td>
               <td><a href= {{route ('suppliers.show',[$supplier->id]) }}><i class="fas fa-search" ></i></a></td>
-              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
+              <td><a href= {{route ('suppliers.edit',[$supplier->id,'edit']) }}><i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
               <td><a href= {{route ('suppliers.delete',[$supplier->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
             </tr>
             @endforeach

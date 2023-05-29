@@ -14,10 +14,9 @@ return new class extends Migration
     {
         Schema::create('costcenters', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
+            $table->string('name',35)->unique();
+            $table->string('code',35)->nullable();
         });
-
 
     }
 

@@ -16,18 +16,17 @@ class SupplierController extends Controller
     protected function SupplierRule($id=null) {
 
         return [
-            'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+            'name'=> ['required','string','max:100', Rule::unique('suppliers')->ignore($id)
         ],
+
             'address'=>  'required|string|max:100',
-            'postalcode'=>  'required|string|max:15',
+            'postalcode'=>  'required|string|max:10',
             'city'=>  'required|string|max:50',
-            'region'=>  'string|max:50',
-            'country'=>  'required|string|max:40',
-            'email'=>  'required|email'
+            // 'region'=>  'string|max:50', NULLABLE
+            'country'=>  'required|string|max:50',
+            'email'=>  'required|email:max:100'
         ];
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -42,11 +41,10 @@ class SupplierController extends Controller
      */
     public function search (Request $request){
 
-    $searchQuery = $request->input('searchField');
-    //dd( $searchQuery);
-     $suppliers = ModelsSupplier::where('name', 'LIKE', "%{$searchQuery}%")
+    $searchQuery = $request->input('searchValue');
+    $suppliers = ModelsSupplier::where('name', 'LIKE', "%{$searchQuery}%")
                 ->paginate(10);
-        // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
+
         return view('suppliers.index',['suppliers'=>$suppliers]);
     }
 
@@ -63,9 +61,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name'=>'required|unique:suppliers'
-        // ]);
+
 
         $request->validate($this->SupplierRule());
 

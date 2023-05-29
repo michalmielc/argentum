@@ -13,9 +13,9 @@ class CostcenterController extends Controller
    protected function CostcenterRule($id=null) {
 
     return [
-        'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+        'name'=> ['required','string','max:35', Rule::unique('suppliers')->ignore($id)
     ],
-        'code'=>  'required|string|max:30'
+        'code'=>  'nullable|string|max:35'
     ];
 }
 
@@ -34,11 +34,10 @@ class CostcenterController extends Controller
      */
     public function search (Request $request){
 
-        $searchQuery = $request->input('searchField');
+        $searchQuery = $request->input('searchValue');
         //dd( $searchQuery);
          $costcenters = ModelsCostcenter::where('name', 'LIKE', "%{$searchQuery}%")
                     ->paginate(10);
-            // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
             return view('costcenters.index',['costcenters'=>$costcenters]);
         }
 
@@ -83,7 +82,7 @@ class CostcenterController extends Controller
     {
         $costcenters=ModelsCostcenter::all();
         $costcenter = $costcenters->find($id);
-        return view ('costcenters.show',['costcenter'=>$costcenter]);
+        return view ('costcenters.edit',['costcenter'=>$costcenter]);
     }
 
     /**
@@ -96,6 +95,7 @@ class CostcenterController extends Controller
         $request->validate($this->CostcenterRule($id));
 
         $data = $request->all();
+
         $costcenter->fill($data);
         $costcenter->update();
 

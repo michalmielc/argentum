@@ -8,28 +8,28 @@
 <div class="row gy-3">
     {{-- nagłówek --}}
     <div>
-        <h4>COSTCENTERS</h4>
+        <h4>ITEMS</h4>
     </div>
 
 
     {{-- przycisk stwórz nowego --}}
     <div>
-        <a href="{{ route ('costcenters.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
+        <a href="{{ route ('items.create')}}" class="btn btn-primary" tabindex="-1" role="button" >DODAJ NOWEGO</a>
     </div>
 
     <div>
         {{-- pole search --}}
-        <form class="row g-3" action="{{route ('costcenters.search')}}" method="GET">
+        <form class="row g-3" action="{{route ('items.search')}}" method="GET">
             <div class="col-auto">
-            <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-            <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+                <label for="searchForText" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY:">
             </div>
             <div class="col-auto">
-                <label for="searchFieldPassword" class="visually-hidden">Password</label>
-                <input type="search" class="form-control" id="searchFieldPassword"name="searchFieldPassword" >
+                <label for="searchValue" class="visually-hidden">SEARCHBOX</label>
+                <input type="search" class="form-control" id="searchValue"name="searchValue" >
             </div>
             <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+                    <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
             </div>
         </form>
     </div>
@@ -38,8 +38,8 @@
     {{-- lista dostawców --}}
     <div>
         <div>
-            liczba rekordów na stronie: {{$costcenters->count()}}
-            z  {{$costcenters->total()}}
+            liczba rekordów na stronie: {{$items->count()}}
+            z  {{$items->total()}}
         </div>
         <table class="table">
         <thead>
@@ -50,13 +50,13 @@
         </thead>
         <tbody>
 
-            @foreach ($costcenters as $costcenter)
+            @foreach ($items as $item)
             <tr scorp="row">
-              <td >{{ $costcenter->name }}</td>
-              <td>{{ $costcenter->code }}</td>
-              <td><a href= {{route ('costcenters.show',[$costcenter->id]) }}><i class="fas fa-search" ></i></a></td>
-              <td><a href= {{route ('costcenters.edit',[$costcenter->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
-              <td><a href= {{route ('costcenters.delete',[$costcenter->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
+              <td >{{ $item->name }}</td>
+              <td>{{ $item->code }}</td>
+              <td><a href= {{route ('items.show',[$item->id]) }}><i class="fas fa-search" ></i></a></td>
+              <td><a href= {{route ('items.edit',[$item->id,'edit']) }}><i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
+              <td><a href= {{route ('items.delete',[$item->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
             </tr>
             @endforeach
 
@@ -64,7 +64,7 @@
      </table>
 
          <div class="pagination" >
-            {{ $costcenters->links()}}
+            {{ $items->links()}}
           </div>
 
     </div>

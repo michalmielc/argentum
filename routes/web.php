@@ -57,15 +57,15 @@ Route::get('costcenters/{id}/delete',[CostcenterController::class,'delete'])->na
 Route::post('costcenters/{id}/destroy',[CostcenterController::class,'destroy'])->name('costcenters.destroy');
 
 //ROUTES STORAGEPLACES ------------------------------
-Route::get('storagesplaces/',[StorageplaceController::class,'index'])->name('storagesplaces.index');
-Route::get('storagesplaces/search',[StorageplaceController::class,'search'])->name('storagesplaces.search');
-Route::get('storagesplaces/create',[StorageplaceController::class,'create'])->name('storagesplaces.create');
-Route::post('storagesplaces',[StorageplaceController::class,'store'])->name('storagesplaces.store');
-Route::get('storagesplaces/{id}',[StorageplaceController::class,'show'])->name('storagesplaces.show');
-Route::get('storagesplaces/{id}/edit',[StorageplaceController::class,'edit'])->name('storagesplaces.edit');
-Route::post('storagesplaces/{id}/update',[StorageplaceController::class,'update'])->name('storagesplaces.update');
-Route::get('storagesplaces/{id}/delete',[StorageplaceController::class,'delete'])->name('storagesplaces.delete');
-Route::post('storagesplaces/{id}/destroy',[StorageplaceController::class,'destroy'])->name('storagesplaces.destroy');
+Route::get('storageplaces/',[StorageplaceController::class,'index'])->name('storageplaces.index');
+Route::get('storageplaces/search',[StorageplaceController::class,'search'])->name('storageplaces.search');
+Route::get('storageplaces/create',[StorageplaceController::class,'create'])->name('storageplaces.create');
+Route::post('storageplaces',[StorageplaceController::class,'store'])->name('storageplaces.store');
+Route::get('storageplaces/{id}',[StorageplaceController::class,'show'])->name('storageplaces.show');
+Route::get('storageplaces/{id}/edit',[StorageplaceController::class,'edit'])->name('storageplaces.edit');
+Route::post('storageplaces/{id}/update',[StorageplaceController::class,'update'])->name('storageplaces.update');
+Route::get('storageplaces/{id}/delete',[StorageplaceController::class,'delete'])->name('storageplaces.delete');
+Route::post('storageplaces/{id}/destroy',[StorageplaceController::class,'destroy'])->name('storageplaces.destroy');
 
 //ROUTES ITEMS ------------------------------
 Route::get('items/',[ItemController::class,'index'])->name('items.index');

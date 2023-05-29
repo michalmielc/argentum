@@ -11,7 +11,7 @@
     </div>
         <div>
             <a href="{{ route ('costcenters.index')}}" class="btn btn-info">POWRÓT</a>
-            <a href="{{ route ('costcenters.delete',[$supplier->id,'delete']) }}" class="btn btn-danger">USUŃ</a>
+            <a href="{{ route ('costcenters.delete',[$costcenter->id,'delete']) }}" class="btn btn-danger">USUŃ</a>
         </div>
         <div>
             @if($errors->any())

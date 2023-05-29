@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Models\Storageplace as ModelsStorageplace;
 
 class StorageplaceController extends Controller
 {
         // TEST RULE FUNCTION
 
-        protected function SupplierRule($id=null) {
+        protected function StorageplaceRule($id=null) {
 
             return [
                 'name'=> ['required', Rule::unique('suppliers')->ignore($id)
@@ -29,7 +31,7 @@ class StorageplaceController extends Controller
          */
         public function index (){
 
-            return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(10)]);
+            return view('storageplaces.index',['storageplaces'=>ModelsStorageplace::paginate(10)]);
         }
 
         /**
@@ -38,11 +40,11 @@ class StorageplaceController extends Controller
         public function search (Request $request){
 
         $searchQuery = $request->input('searchField');
-        //dd( $searchQuery);
-         $suppliers = ModelsSupplier::where('name', 'LIKE', "%{$searchQuery}%")
+
+         $storageplaces = ModelsStorageplace::where('name', 'LIKE', "%{$searchQuery}%")
                     ->paginate(10);
-            // return view('suppliers.index',['suppliers'=>ModelsSupplier::paginate(15)]);
-            return view('suppliers.index',['suppliers'=>$suppliers]);
+
+            return view('storageplaces.index',['storageplaces'=>$storageplaces]);
         }
 
           /**
@@ -50,7 +52,7 @@ class StorageplaceController extends Controller
          */
         public function create()
         {
-           return view('suppliers.create');
+           return view('storageplaces.create');
         }
 
         /**
@@ -62,19 +64,19 @@ class StorageplaceController extends Controller
             //     'name'=>'required|unique:suppliers'
             // ]);
 
-            $request->validate($this->SupplierRule());
+            $request->validate($this->StorageplaceRule());
 
-            $supplier = new ModelsSupplier();
-            $supplier->name = $request->name;
-            $supplier->address = $request->address;
-            $supplier->postalcode = $request->postalcode;
-            $supplier->city= $request->city;
-            $supplier->region = $request->region;
-            $supplier->country = $request->country;
-            $supplier->email = $request->email;
-            $supplier->save();
+            $storageplace = new ModelsStorageplace();
+            $storageplace->name = $request->name;
+            $storageplace->address = $request->address;
+            $storageplace->postalcode = $request->postalcode;
+            $storageplace->city= $request->city;
+            $storageplace->region = $request->region;
+            $storageplace->country = $request->country;
+            $storageplace->email = $request->email;
+            $storageplace->save();
 
-            return redirect('suppliers');
+            return redirect('storageplaces');
         }
 
         /**
@@ -82,9 +84,9 @@ class StorageplaceController extends Controller
          */
         public function show(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.show',['supplier'=>$supplier]);
+            $storageplace=ModelsStorageplace::all();
+            $storageplace = $storageplace->find($id);
+            return view ('storageplaces.show',['storageplace'=>$storageplace]);
         }
 
         /**
@@ -92,9 +94,9 @@ class StorageplaceController extends Controller
          */
         public function edit(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.edit',['supplier'=>$supplier]);
+            $storageplaces=ModelsStorageplace::all();
+            $storageplace = $storageplaces->find($id);
+            return view ('storageplaces.edit',['storageplace'=>$storageplace]);
         }
 
         /**
@@ -102,25 +104,23 @@ class StorageplaceController extends Controller
          */
         public function update(Request $request, string $id)
         {
-            $supplier = ModelsSupplier::find($id);
-            // $request->validate([
-            //     'name'=>'required|unique:suppliers,name,'.$id
-            // ]);
+            $storageplace = ModelsStorageplace::find($id);
 
-            $request->validate($this->SupplierRule($id));
+
+            $request->validate($this->StorageplaceRule($id));
 
             $data = $request->all();
-            $supplier->fill($data);
-            $supplier->update();
+            $storageplace->fill($data);
+            $storageplace->update();
 
-            return redirect('suppliers');
+            return redirect('storageplaces');
         }
 
         public function delete(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            return view ('suppliers.delete',['supplier'=>$supplier]);
+            $storageplaces=ModelsStorageplace::all();
+            $storageplace = $storageplaces->find($id);
+            return view ('storageplaces.delete',['storageplace'=>$storageplace]);
         }
 
         /**
@@ -128,9 +128,9 @@ class StorageplaceController extends Controller
          */
         public function destroy(string $id)
         {
-            $suppliers=ModelsSupplier::all();
-            $supplier = $suppliers->find($id);
-            $supplier->delete();
-            return redirect('suppliers');
+            $storageplaces=ModelsStorageplace::all();
+            $storageplace = $storageplaces->find($id);
+            $storageplace->delete();
+            return redirect('storageplaces');
         }
 }

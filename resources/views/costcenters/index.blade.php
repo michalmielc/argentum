@@ -21,15 +21,15 @@
         {{-- pole search --}}
         <form class="row g-3" action="{{route ('costcenters.search')}}" method="GET">
             <div class="col-auto">
-            <label for="searchField" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-            <input type="text" readonly class="form-control-plaintext" id="searchField" value="SZUKAJ WG NAZWY:">
+                <label for="searchForText" class="visually-hidden">SZUKAJ WG NAZWY:</label>
+                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY:">
             </div>
             <div class="col-auto">
-                <label for="searchFieldPassword" class="visually-hidden">Password</label>
-                <input type="search" class="form-control" id="searchFieldPassword"name="searchFieldPassword" >
+                <label for="searchValue" class="visually-hidden">SEARCHBOX</label>
+                <input type="search" class="form-control" id="searchValue"name="searchValue" >
             </div>
             <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
+                    <button type="submit" class="btn btn-primary mb-3">SEARCH</button>
             </div>
         </form>
     </div>
@@ -55,7 +55,7 @@
               <td >{{ $costcenter->name }}</td>
               <td>{{ $costcenter->code }}</td>
               <td><a href= {{route ('costcenters.show',[$costcenter->id]) }}><i class="fas fa-search" ></i></a></td>
-              <td><a href= {{route ('costcenters.edit',[$costcenter->id,'edit']) }}><i i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
+              <td><a href= {{route ('costcenters.edit',[$costcenter->id,'edit']) }}><i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
               <td><a href= {{route ('costcenters.delete',[$costcenter->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>
             </tr>
             @endforeach
