@@ -13,14 +13,21 @@ class StorageplaceController extends Controller
         protected function StorageplaceRule($id=null) {
 
             return [
-                'name'=> ['required', Rule::unique('suppliers')->ignore($id)
+
+                'barcode'=> ['required','string',"max:50", Rule::unique('storageplaces')->ignore($id)
             ],
-                'address'=>  'required|string|max:100',
-                'postalcode'=>  'required|string|max:15',
-                'city'=>  'required|string|max:50',
-                'region'=>  'string|max:50',
-                'country'=>  'required|string|max:40',
-                'email'=>  'required|email'
+                // 'stillageNo'=>'required|numeric|min:0|max:10000',
+                // 'shelfNo'=>'required|numeric|min:0|max:10000',
+                // 'placeNo'=>'required|numeric|min:0|max:10000',
+                // 'maxHeight'=>'required|numeric|min:0|max:10000',
+                // 'maxWeight'=>'required|numeric|min:0|max:100000',
+                // 'lane'=>'required|numeric|min:0|max:10000',
+                'name'=> ['required','string',"max:50", Rule::unique('storageplaces')->ignore($id),
+                // 'accessTime'=>'required|numeric|min:0|max:1000',
+                // 'maxAmountOfItems'=>'required|numeric|min:0|max:1000',
+            ],
+
+
             ];
         }
 
@@ -39,10 +46,10 @@ class StorageplaceController extends Controller
          */
         public function search (Request $request){
 
-        $searchQuery = $request->input('searchField');
+        $searchQuery = $request->input('searchValue');
 
-         $storageplaces = ModelsStorageplace::where('name', 'LIKE', "%{$searchQuery}%")
-                    ->paginate(10);
+
+         $storageplaces = ModelsStorageplace::whereRaw ("name LIKE  '%{$searchQuery}%' OR barcode LIKE '%{$searchQuery}%'")->paginate(10);
 
             return view('storageplaces.index',['storageplaces'=>$storageplaces]);
         }
@@ -60,20 +67,22 @@ class StorageplaceController extends Controller
          */
         public function store(Request $request)
         {
-            // $request->validate([
-            //     'name'=>'required|unique:suppliers'
-            // ]);
 
             $request->validate($this->StorageplaceRule());
 
             $storageplace = new ModelsStorageplace();
+            $storageplace->barcode = $request->barcode;
+            $storageplace->stillageNo = $request->stillageNo;
+            $storageplace->shelfNo = $request->shelfNo;
+            $storageplace->placeNo = $request->placeNo;
+            $storageplace->maxHeight= $request->maxHeight;
+            $storageplace->maxWeight = $request->maxWeight;
+            $storageplace->lane = $request->lane;
             $storageplace->name = $request->name;
-            $storageplace->address = $request->address;
-            $storageplace->postalcode = $request->postalcode;
-            $storageplace->city= $request->city;
-            $storageplace->region = $request->region;
-            $storageplace->country = $request->country;
-            $storageplace->email = $request->email;
+            $storageplace->accessTime = $request->accessTime;
+            $storageplace->isActive = $request->isActive;
+            $storageplace->onlySingle = $request->onlySingle;
+            $storageplace->maxAmountOfItems = $request->maxAmountOfItems;
             $storageplace->save();
 
             return redirect('storageplaces');

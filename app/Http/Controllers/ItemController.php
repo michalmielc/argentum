@@ -44,11 +44,18 @@ class ItemController extends Controller
          */
         public function search (Request $request){
 
-        $searchQuery = $request->input('searchField');
+        $searchQuery = $request->input('searchValue');
 
         // DO POPRAWY WYSZUKIWANIE
-         $items = ModelsItem::where('name', 'LIKE', "%{$searchQuery}%")
-                    ->paginate(10);
+        //  $items = ModelsItem::whereRaw(('name LIKE', "%{$searchQuery}%")     )->paginate(10);
+
+        $items = ModelsItem::where('name', 'LIKE', "%{$searchQuery}%")
+        ->paginate(10);
+
+    //    $items = ModelsItem::where(function ($query) use ($searchQuery) {
+    //                     $query->where('name', 'LIKE', "%{$searchQuery}%")
+    //                           ->orWhere('barcode', 'LIKE', "%{$searchQuery}%");
+    //                 });
 
             return view('items.index',['items'=>$items]);
         }

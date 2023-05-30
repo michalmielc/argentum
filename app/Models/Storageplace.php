@@ -13,7 +13,19 @@ class Storageplace extends Model
     public $timestamps = false;
 
     protected $fillable = [
+
+        'barcode',
+        'stillageNo',
+        'shelfNo',
+        'storageplacePlaceNo',
+        'placeNo',
+        'maxHeight',
+        'maxWeight',
+        'lane',
         'name',
-        'code'
+        'accessTime',
+        'isActive',
+        'onlySingle',
+        'maxAmountOfItems'
     ];
 }

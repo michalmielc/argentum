@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('storageplaces', function (Blueprint $table) {
             $table->id();
-            $table->string('barcode')->unique();
+            $table->string('barcode',50)->unique();
             $table->unsignedSmallInteger('stillageNo');
             $table->unsignedSmallInteger('shelfNo');
             $table->unsignedSmallInteger('placeNo');
             $table->unsignedSmallInteger('maxHeight');
-            $table->unsignedSmallInteger('maxWeight');
-            $table->unsignedSmallInteger('lLane');
-            $table->string('name')->unique();
+            $table->decimal('maxWeight',6,3,false);
+            $table->unsignedSmallInteger('lane');
+            $table->string('name',50)->unique();
             $table->unsignedTinyInteger('accessTime');
             $table->boolean('isActive');
             $table->boolean('onlySingle');

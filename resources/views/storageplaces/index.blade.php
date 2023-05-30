@@ -20,11 +20,11 @@
     <div>
         {{-- pole search --}}
         <form class="row g-3" action="{{route ('storageplaces.search')}}" method="GET">
-            <div class="col-auto">
-                <label for="searchForText" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY:">
+            <div class="col-3">
+                <label for="searchForText" class="visually-hidden">S</label>
+                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY LUB BARCODU:">
             </div>
-            <div class="col-auto">
+            <div class="col-6">
                 <label for="searchValue" class="visually-hidden">SEARCHBOX</label>
                 <input type="search" class="form-control" id="searchValue"name="searchValue" >
             </div>
@@ -45,7 +45,11 @@
         <thead>
           <tr>
             <th scope="col">NAME</th>
-            <th scope="col">CODE</th>
+            <th scope="col">BARCODE</th>
+            <th scope="col">LANE</th>
+            <th scope="col">STILLAGENO</th>
+            <th scope="col">SHELF</th>
+            <th scope="col">PLACE</th>
           </tr>
         </thead>
         <tbody>
@@ -53,7 +57,11 @@
             @foreach ($storageplaces as $storageplace)
             <tr scorp="row">
               <td >{{ $storageplace->name }}</td>
-              <td>{{ $storageplace->code }}</td>
+              <td>{{ $storageplace->barcode }}</td>
+              <td>{{ $storageplace->lane }}</td>
+              <td>{{ $storageplace->stillageNo }}</td>
+              <td>{{ $storageplace->shelfNo }}</td>
+              <td>{{ $storageplace->placeNo }}</td>
               <td><a href= {{route ('storageplaces.show',[$storageplace->id]) }}><i class="fas fa-search" ></i></a></td>
               <td><a href= {{route ('storageplaces.edit',[$storageplace->id,'edit']) }}><i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
               <td><a href= {{route ('storageplaces.delete',[$storageplace->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>

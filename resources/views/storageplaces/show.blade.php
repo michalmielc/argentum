@@ -1,25 +1,25 @@
 @extends('templates.template')
 @section('title_main')
-    ARGENTUM  - COSTCENTERS
+    ARGENTUM  - STORAGEPLACE
 @endsection
 
 @section('content')
 
 <div class="row gy-3">
     <div>
-        <h4>COSTCENTER</h4>
+        <h4>STORAGEPLACE</h4>
     </div>
     <div>
-        <a href="{{ route ('costcenters.index')}}" class="btn btn-info">POWRÓT</a>
+        <a href="{{ route ('storageplaces.index')}}" class="btn btn-info">POWRÓT</a>
     </div>
     <div>
         <form  method="POST">
             {{ csrf_field() }}
 
             <input type="hidden" name ="_token" value="{{ csrf_token() }}" >
-            <input type="hidden" name="id " value= {{ $costcenter->id}}>
+            <input type="hidden" name="id " value= {{ $storageplace->id}}>
             <div>
-                <button class="btn btn-dark" formaction="{{ route ('costcenters.edit', [$costcenter->id,'edit'])}}" type="submit" formmethod="GET">EDYCJA</button>
+                <button class="btn btn-dark" formaction="{{ route ('storageplaces.edit', [$storageplace->id,'edit'])}}" type="submit" formmethod="GET">EDYCJA</button>
             </div>
         </form>
     </div>
@@ -27,20 +27,64 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">DANE MPK</th>
+                    <th scope="col">DANE STORAGEPLACE</th>
                 </tr>
             </thead>
             <tbody>
 
                 <tr scorp="row">
                     <tr>
-                        <td>NAME:</td>
-                        <td>{{ $costcenter->name }}</td>
+                        <td>BARCODE:</td>
+                        <td>{{ $storageplace->barcode }}</td>
                     </tr>
 
                     <tr>
-                        <td>CODE:</td>
-                        <td>{{ $costcenter->code }}</td>
+                        <td>STILLAGE NO:</td>
+                        <td>{{ $storageplace->stillageNo }}</td>
+                    </tr>
+                    <tr>
+                        <td>SHELF NO:</td>
+                        <td>{{ $storageplace->shelfNo }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>PLACE NO:</td>
+                        <td>{{ $storageplace->placeNo }}</td>
+                    </tr>
+                    <tr>
+                        <td>MAX HEIGHT:</td>
+                        <td>{{ $storageplace->maxHeight }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>MAX WEIGHT:</td>
+                        <td>{{ $storageplace->maxWeight }}</td>
+                    </tr>
+                    <tr>
+                        <td>LANE:</td>
+                        <td>{{ $storageplace->lane }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>NAME:</td>
+                        <td>{{ $storageplace->name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>ACCESS TIME:</td>
+                        <td>{{ $storageplace->accessTime }}</td>
+                    </tr>
+                    <tr>
+                        <td>IS ACTIVE:</td>
+                        <td>{{ $storageplace->isActive ? "YES":"NO" }}</td>
+                    </tr>
+                    <tr>
+                        <td>ONLY SINGLE:</td>
+                        <td>{{ $storageplace->onlySingle ? "YES":"NO" }}</td>
+                    </tr>
+                    <tr>
+                        <td>MAX AMOUNT OF ITEMS:</td>
+                        <td>{{ $storageplace->maxAmountOfItems }}</td>
                     </tr>
 
 

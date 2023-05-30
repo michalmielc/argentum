@@ -1,0 +1,10 @@
+barcode,stillageNo,shelfNo,placeNo,maxHeight,maxWeight,lane,name,accessTime,isActive,onlySingle,maxAmountOfItems
+"000121", 1, 2, 1, 70, 50, 1, "Regał: 1  Poziom: 2  Miejsce: 1", 10, 1,0,1
+"000111", 1, 1, 1, 70, 50,1, "Regał: 1  Poziom: 1  Miejsce: 1", 7, 1,0,1
+"000112", 1, 1, 2, 70, 50, 1, "Regał: 1  Poziom: 1  Miejsce: 2", 7, 1,0,1
+"000101", 1, 0, 1, 70, 45,1, "Regał: 1  Poziom: 0  Miejsce: 1", 3, 1,0,1
+"000211", 2, 1, 1, 70, 75,1, "Regał: 2  Poziom: 1  Miejsce: 1", 8, 1,0,1
+"000212", 2, 1, 2, 70, 80,1, "Regał: 2  Poziom: 1  Miejsce: 2", 8, 1,0,1
+"000213", 2, 1, 3, 70,100, 1, "Regał: 2  Poziom: 1  Miejsce: 3", 8, 1,0,1
+"000201", 2, 0, 1, 70, 110,1, "Regał: 2  Poziom: 0  Miejsce: 1", 3, 1,0,1
+"000202", 2, 0, 2, 70, 120,1, "Regał: 2  Poziom: 0  Miejsce: 2", 3, 1,0,1
