@@ -1,6 +1,6 @@
 @extends('templates.template')
 @section('title_main')
-    ARGENTUM  - COSTCENTERS
+    ARGENTUM  - ITEMS
 @endsection
 
 @section('content')
@@ -20,11 +20,11 @@
     <div>
         {{-- pole search --}}
         <form class="row g-3" action="{{route ('items.search')}}" method="GET">
-            <div class="col-auto">
+            <div class="col-3">
                 <label for="searchForText" class="visually-hidden">SZUKAJ WG NAZWY:</label>
-                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZWY:">
+                <input type="text" readonly class="form-control-plaintext" id="searchForText" value="SZUKAJ WG NAZW ORAZ BARCODE:">
             </div>
-            <div class="col-auto">
+            <div class="col-6">
                 <label for="searchValue" class="visually-hidden">SEARCHBOX</label>
                 <input type="search" class="form-control" id="searchValue"name="searchValue" >
             </div>
@@ -44,16 +44,20 @@
         <table class="table">
         <thead>
           <tr>
-            <th scope="col">NAME</th>
-            <th scope="col">CODE</th>
+            <th scope="col">NAME1</th>
+            <th scope="col">NAME2</th>
+            <th scope="col">NAME3</th>
+            <th scope="col">BARCODE</th>
           </tr>
         </thead>
         <tbody>
 
             @foreach ($items as $item)
             <tr scorp="row">
-              <td >{{ $item->name }}</td>
-              <td>{{ $item->code }}</td>
+              <td>{{ $item->name1 }}</td>
+              <td>{{ $item->name2 }}</td>
+              <td>{{ $item->name3 }}</td>
+              <td>{{ $item->barcode }}</td>
               <td><a href= {{route ('items.show',[$item->id]) }}><i class="fas fa-search" ></i></a></td>
               <td><a href= {{route ('items.edit',[$item->id,'edit']) }}><i class="fas fa-pencil-alt" style="color:green;"></i></a></td>
               <td><a href= {{route ('items.delete',[$item->id,'delete']) }}><i class="fas fa-trash-alt" style="color:red;"></i></a></td>

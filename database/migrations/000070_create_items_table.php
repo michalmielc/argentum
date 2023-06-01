@@ -15,16 +15,16 @@ return new class extends Migration
 
             $table->id();
             $table->string('name1')->unique();
-            $table->string('name2');
-            $table->string('name3');
-            $table->string('barcode');
+            $table->string('name2')->nullable();
+            $table->string('name3')->nullable();
+            $table->string('barcode')->unique();
             $table->unsignedSmallInteger('boxAmount');
             $table->unsignedSmallInteger('minInv');
-            $table->unsignedSmallInteger('sizes');
+            $table->string('sizes');
             $table->unsignedSmallInteger('weight');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->boolean('isActive');
-            $table->date('expiryDate');
+            $table->date('expiryDate')->nullable();
             $table->boolean('isBlocked');
         });
     }

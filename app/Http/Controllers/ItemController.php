@@ -8,24 +8,20 @@ use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
-        // TEST RULE FUNCTION
 
         protected function ItemRule($id=null) {
 
             return [
-                'name1'=> ['required|string|max:100', Rule::unique('items')->ignore($id)
+                'name1'=> ['required','string',"max:100", Rule::unique('items')->ignore($id)
             ],
                 'name2'=>  'string|max:100',
-                'name3'=>  'string|max:100',
+                'name3'=>  'max:100',
                 'barcode'=>  'required|string|max:50',
-                // 'boxAmount'=> '',
+                'boxAmount'=> 'numeric|min:0',
                 'minInv'=>  'numeric|min:0',
-                // 'sizes'=>  '',
+                'sizes'=>  'string|max:100',
                 'weight'=>  'numeric|min:0',
                 'picture'=>  'string|max:100',
-                'isActive'=> 'required|boolean',
-                // 'expiryDate'=> '',
-                'isBlocked'=> 'required|boolean'
 
             ];
         }
@@ -46,16 +42,10 @@ class ItemController extends Controller
 
         $searchQuery = $request->input('searchValue');
 
-        // DO POPRAWY WYSZUKIWANIE
-        //  $items = ModelsItem::whereRaw(('name LIKE', "%{$searchQuery}%")     )->paginate(10);
+        $items = ModelsItem::whereRaw ("name1 LIKE  '%{$searchQuery}%' OR name2 LIKE '%{$searchQuery}%'
+        OR name3 LIKE '%{$searchQuery}%' OR barcode LIKE '%{$searchQuery}%'  ")->paginate(10);
 
-        $items = ModelsItem::where('name', 'LIKE', "%{$searchQuery}%")
-        ->paginate(10);
 
-    //    $items = ModelsItem::where(function ($query) use ($searchQuery) {
-    //                     $query->where('name', 'LIKE', "%{$searchQuery}%")
-    //                           ->orWhere('barcode', 'LIKE', "%{$searchQuery}%");
-    //                 });
 
             return view('items.index',['items'=>$items]);
         }
@@ -78,13 +68,18 @@ class ItemController extends Controller
 
             //DO POPRAWY STORE
             $item = new ModelsItem();
-            $item->name = $request->name;
-            $item->address = $request->address;
-            $item->postalcode = $request->postalcode;
-            $item->city= $request->city;
-            $item->region = $request->region;
-            $item->country = $request->country;
-            $item->email = $request->email;
+            $item->name1 = $request->name1;
+            $item->name2 = $request->name2;
+            $item->name3 = $request->name3;
+            $item->barcode = $request->barcode;
+            $item->boxAmount = $request->boxAmount;
+            $item->minInv= $request->minInv;
+            $item->sizes = $request->sizes;
+            $item->weight = $request->weight;
+            $item->picture = $request->picture;
+            $item->isActive = $request->has('isActive')? 1 : 0;
+            $item->expiryDate = $request->expiryDate;
+            $item->isBlocked = $request->has('isBlocked')? 1 : 0;
             $item->save();
 
             return redirect('items');

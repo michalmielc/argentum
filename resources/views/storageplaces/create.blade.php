@@ -44,11 +44,11 @@
             </div>
             <div class="col-md-5">
                 <label for="maxHeight" class="form-label">MAX HEIGHT</label>
-                <input type="text" class="form-control" id="maxHeight" name="maxHeight" value="{{old('maxHeight')}}">
+                <input type="numeric" class="form-control" id="maxHeight" name="maxHeight" value="{{old('maxHeight')}}">
             </div>
             <div class="col-md-5">
                 <label for="maxWeight" class="form-label">MAX WEIGHT</label>
-                <input type="text" class="form-control" id="maxWeight" name="maxWeight" value="{{old('maxWeight')}}">
+                <input type="numeric" class="form-control" id="maxWeight" name="maxWeight" value="{{old('maxWeight')}}">
             </div>
             <div class="col-md-3">
                 <label for="lane" class="form-label">LANE</label>

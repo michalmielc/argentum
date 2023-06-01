@@ -67,7 +67,7 @@
 
                 <div class="form-check col-md-3">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="isActive"
-                    {{ $storageplace->isActive? "checked" :""}}>
+                    {{ $storageplace->isActive ? "checked" :""}}>
                     <label class="form-check-label" for="flexCheckChecked">
                         IS ACTIVE
                     </label>
@@ -75,7 +75,7 @@
 
                   <div class="form-check col-md-3">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="onlySingle"
-                    {{ $storageplace->onlySingle? "checked" :""}}>
+                    {{ $storageplace->onlySingle ? "checked" :""}}>
                     <label class="form-check-label" for="flexCheckChecked">
                         ONLY SINGLE
                     </label>

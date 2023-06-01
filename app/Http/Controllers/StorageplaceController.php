@@ -16,17 +16,15 @@ class StorageplaceController extends Controller
 
                 'barcode'=> ['required','string',"max:50", Rule::unique('storageplaces')->ignore($id)
             ],
-                // 'stillageNo'=>'required|numeric|min:0|max:10000',
-                // 'shelfNo'=>'required|numeric|min:0|max:10000',
-                // 'placeNo'=>'required|numeric|min:0|max:10000',
-                // 'maxHeight'=>'required|numeric|min:0|max:10000',
-                // 'maxWeight'=>'required|numeric|min:0|max:100000',
-                // 'lane'=>'required|numeric|min:0|max:10000',
-                'name'=> ['required','string',"max:50", Rule::unique('storageplaces')->ignore($id),
-                // 'accessTime'=>'required|numeric|min:0|max:1000',
-                // 'maxAmountOfItems'=>'required|numeric|min:0|max:1000',
-            ],
-
+                'stillageNo'=>'required|numeric|min:0|max:10000',
+                'shelfNo'=>'required|numeric|min:0|max:10000',
+                'placeNo'=>'required|numeric|min:0|max:10000',
+                'maxHeight'=>'required|numeric|min:0|max:10000',
+                'maxWeight'=>'required|numeric|min:0|max:100000',
+                'lane'=>'required|numeric|min:0|max:10000',
+                'name'=> ['required','string',"max:50", Rule::unique('storageplaces')->ignore($id)],
+                'accessTime'=>'required|numeric|min:0|max:1000',
+                'maxAmountOfItems'=>'required|numeric|min:0|max:1000',
 
             ];
         }
@@ -80,8 +78,8 @@ class StorageplaceController extends Controller
             $storageplace->lane = $request->lane;
             $storageplace->name = $request->name;
             $storageplace->accessTime = $request->accessTime;
-            $storageplace->isActive = $request->isActive;
-            $storageplace->onlySingle = $request->onlySingle;
+            $storageplace->isActive = $request->has('isActive')? 1 : 0;
+            $storageplace->onlySingle = $request->has('onlySingle')? 1 : 0;
             $storageplace->maxAmountOfItems = $request->maxAmountOfItems;
             $storageplace->save();
 
@@ -119,6 +117,11 @@ class StorageplaceController extends Controller
             $request->validate($this->StorageplaceRule($id));
 
             $data = $request->all();
+
+
+            $data['isActive'] = $request->has('isActive')? 1 : 0;
+            $data['onlySingle'] = $request->has('onlySingle')? 1 : 0;
+
             $storageplace->fill($data);
             $storageplace->update();
 
