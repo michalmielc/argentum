@@ -34,6 +34,14 @@ Route::get('/start', function () {
 
 })->name('argentum.mainmenu');
 
+// ROUTE REPORTS ------------------------------
+
+Route::get('/reports', function () {
+
+    return view('reports.index');
+
+})->name('reports.index');
+
 //ROUTES DOSTAWCY ------------------------------
 Route::get('suppliers/',[SupplierController::class,'index'])->name('suppliers.index');
 Route::get('suppliers/search',[SupplierController::class,'search'])->name('suppliers.search');

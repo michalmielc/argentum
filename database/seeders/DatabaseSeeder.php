@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CostcenterSeeder::class,
             StorageplaceSeeder::class,
             ItemSeeder::class,
+            ItemAvlSeeder::class,
 
         ]);
 

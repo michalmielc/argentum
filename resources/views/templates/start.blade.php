@@ -17,7 +17,8 @@
            <li> <a href="{{ route ('costcenters.index')}}" class="btn btn-info">COSTCENTERS</a> </li>
            <li> <a href="{{ route ('items.index')}}" class="btn btn-info">ITEMS</a></li>
            <li> <a href="{{ route ('storageplaces.index')}}" class="btn btn-info">STORAGEPLACES</a></li>
-            <li><a href="{{ route ('suppliers.index')}}" class="btn btn-info">SUPPLIERS</a> </li>
+           <li> <a href="{{ route ('suppliers.index')}}" class="btn btn-info">SUPPLIERS</a> </li>
+           <li> <a href="{{ route ('reports.index')}}" class="btn btn-info">REPORTS</a> </li>
         </ul>
     </div>
 
