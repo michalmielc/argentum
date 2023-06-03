@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item as ModelsItem;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class ItemController extends Controller
 {
@@ -22,6 +23,7 @@ class ItemController extends Controller
                 'sizes'=>  'string|max:100',
                 'weight'=>  'numeric|min:0',
                 'picture'=>  'string|max:100',
+                'expiryDate' => 'nullable|date'
 
             ];
         }
@@ -78,7 +80,7 @@ class ItemController extends Controller
             $item->weight = $request->weight;
             $item->picture = $request->picture;
             $item->isActive = $request->has('isActive')? 1 : 0;
-            $item->expiryDate = $request->expiryDate;
+            $item->expiryDate = Carbon::parse($request->expiryDate)->toDateString() ;
             $item->isBlocked = $request->has('isBlocked')? 1 : 0;
             $item->save();
 
@@ -115,6 +117,11 @@ class ItemController extends Controller
             $request->validate($this->ItemRule($id));
 
             $data = $request->all();
+
+
+            $data['isActive'] = $request->has('isActive')? 1 : 0;
+            $data['isBlocked'] = $request->has('isBlocked')? 1 : 0;
+
             $item->fill($data);
             $item->update();
 

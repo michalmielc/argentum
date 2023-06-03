@@ -118,7 +118,6 @@ class StorageplaceController extends Controller
 
             $data = $request->all();
 
-
             $data['isActive'] = $request->has('isActive')? 1 : 0;
             $data['onlySingle'] = $request->has('onlySingle')? 1 : 0;
 

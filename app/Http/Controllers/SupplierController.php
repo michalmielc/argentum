@@ -104,9 +104,7 @@ class SupplierController extends Controller
     public function update(Request $request, string $id)
     {
         $supplier = ModelsSupplier::find($id);
-        // $request->validate([
-        //     'name'=>'required|unique:suppliers,name,'.$id
-        // ]);
+
 
         $request->validate($this->SupplierRule($id));
 
