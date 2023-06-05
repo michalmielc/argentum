@@ -20,8 +20,13 @@
             </div>
             <a href="#" class="list-group-item list-group-item-action">STORAGEPLACES</a>
             <a href="#" class="list-group-item list-group-item-action">USERS</a>
-            <a href="#" class="list-group-item list-group-item-action">SUPPLIERS</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">COST CENTERS</a>
+            <a href="#" class="list-group-item list-group-item-action" disabled>SUPPLIERS</a>
+            <div>
+                <a href="#" class="list-group-item list-group-item-action ">COST CENTERS</a>
+                <div class="list-group">
+                    <a href="{{ route ('reports.costcenters.index')}}" class="list-group-item list-group-item-action">COSTCENTERS ALL</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -18,7 +18,9 @@
            <li> <a href="{{ route ('items.index')}}" class="btn btn-info">ITEMS</a></li>
            <li> <a href="{{ route ('storageplaces.index')}}" class="btn btn-info">STORAGEPLACES</a></li>
            <li> <a href="{{ route ('suppliers.index')}}" class="btn btn-info">SUPPLIERS</a> </li>
-           <li> <a href="{{ route ('reports.index')}}" class="btn btn-info">REPORTS</a> </li>
+           <li> <a href="{{ route ('argentum.reports')}}" class="btn btn-info">REPORTS</a> </li>
+           <li> <a href="{{ route ('receive.index')}}" class="btn btn-info">RECEIVE GOODS</a> </li>
+           <li> <a href="{{ route ('withdraw.index')}}" class="btn btn-info">WITHDRAW GOODS</a> </li>
         </ul>
     </div>
 

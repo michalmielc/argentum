@@ -5,7 +5,10 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StorageplaceController;
 use App\Http\Controllers\CostcenterController;
+use App\Http\Controllers\ReceiveController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,8 +42,17 @@ Route::get('/start', function () {
 Route::get('/reports', function () {
 
     return view('reports.index');
+} )->name('argentum.reports');
 
-})->name('reports.index');
+
+Route::get('/reports/constcenters/getCostcentersAll',[ReportController::class,'getCostcentersAll'])->name('reports.costcenters.index');
+
+
+//ROUTES RECEIVE ------------------------------
+Route::get('receive/',[ReceiveController::class,'index'])->name('receive.index');
+
+//ROUTES WITHDRAW ------------------------------
+Route::get('withdraw/',[WithdrawController::class,'index'])->name('withdraw.index');
 
 //ROUTES DOSTAWCY ------------------------------
 Route::get('suppliers/',[SupplierController::class,'index'])->name('suppliers.index');
